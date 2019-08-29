@@ -1,5 +1,5 @@
 # Sample-Propane-Environment
-This is a sample Propane Environment orchestrated with Vagrant used by DC706
+This is a sample vulnerable Propane KotH Environment orchestrated with Vagrant used by DC706
 
 **Warning: THESE ARE VULNERABLE IMAGES AND SHOULD NOT BE DEPLOYED IN AN ENVIRONMENT THAT IS NOT INTENDED TO BE EXPLOITED/HACKED**
 
@@ -11,3 +11,9 @@ Known Issues:
     - You can manually add them in once you've pulled down the VM, and then take a snapshot, but it requires an extra step
 - The box "moo" is having sporadic issues wih its custom vulnerable init.d services. We will update this box to a more modern OS to prevent these issues (you can just comment it out for now). 
 - If you encounter any "PCIe" related issues this might be related to the USB controller. Just open virtualbox and disable the USB controller to work around it. These VMs *shouldn't* have those kinds of issues, but just noting in case as they have been seen before.
+
+Features:
+- Includes `create_snap_vulnenv.sh` which will automatically take snapshots of the VMs included with this Vagrantfile. Run this after the initial `vagrant up` execution to get a pristine live copy of your competition environment.
+- Includes `delete_snap_vulnenv.sh` which will remove all the base snapshots created with the `create_snap_vulnenv.sh` script. Just a helpful snapshot management script.
+- Includes a `restore_vulnenv.sh` script which restores the entire environment to its pristine snapshot state.
+- Includes a `noscoreboard_restore.sh` script which restores all systems except for the Propane scoreboard VM. This is helpful if you wish to reset all systems in the environment without impacting the scoreboard. To restore invididual systems you can simply copy and paste a single restore line from this file for the desired box. Each line is just a vagrant restore command so it's pretty straightforward.
